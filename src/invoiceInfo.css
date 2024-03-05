@@ -1,0 +1,240 @@
+.invoice-info-p {
+    color: #DFE3FA;
+    font-size: 17px;
+}
+
+.invoice-info-title {
+    color: #DFE3FA;
+    font-size: 16px;
+}
+
+.invoice-info-id {
+    font-size: 18px;
+}
+
+.invoice-info-white{
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+}
+
+.invoice-info-app-component {
+    font-family: "League Spartan", sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row;
+    margin: 0;
+    /*border: 5px solid red;*/
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.invoice-info-layout{
+    /*width: 100%;*/
+    margin-top: 100px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    /*border: 2px solid green;*/
+    overflow-x: hidden;
+    padding-left: 650px;
+    padding-right: 650px;
+    gap: 35px;
+}
+
+.invoice-info-header {
+    display: flex;
+    border-radius: 10px;
+    /*width: 80%;*/
+    justify-content: space-between;
+    height: 100px;
+    /*border: 5px solid rgb(29, 220, 237);*/
+    right: 0;
+    font-size: 30px;
+    /*box-sizing: border-box;*/
+    /*position: relative;*/
+    background:#1E2139 ;
+    color: white;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.invoice-status {
+    display: flex;
+}
+
+
+.invoice-info-header-left {
+    /*border: 2px solid blue;*/
+    display: flex;
+    flex-direction: row;
+    /*overflow: hidden;*/
+    color: white;
+    align-items: center;
+    /*justify-content: center;*/
+    gap: 10px;
+
+}
+
+.invoice-info-header-p {
+    font-size: 18px;
+    margin-bottom: 0;
+    margin-top: 0;
+
+}
+
+.header-invoices-amount{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+
+.invoice-info-header-right {
+    display: flex;
+    flex-direction: row;
+    color: white;
+    /*border: 2px solid red;*/
+    align-items: center;
+    gap: 20px;
+
+}
+
+/*p {*/
+/*    margin-top: 0;*/
+/*}*/
+
+
+.header-invoices-amount{
+    font-size: 16px;
+}
+
+.invoice-info-btns{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.invoice-info-main{
+    display: flex;
+    flex-direction: column;
+    background: #1E2139;
+    border-radius: 10px;
+}
+
+.invoice-info-main-top{
+    display: flex;
+    justify-content: space-between;
+    height:100px;
+    color: white;
+    /*border: 2px solid white;*/
+    padding: 60px;
+    /*border-radius: 10px;*/
+
+}
+
+.invoice-info-mid-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.invoice-info-main-top-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 150px;
+    align-items: start;
+    /*border: 2px solid red;*/
+
+}
+
+.invoice-info-main-top-left{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+
+}
+.invoice-info-main-mid {
+    display: flex;
+    flex-direction: row;
+    /*border: 2px solid yellow;*/
+    gap: 170px;
+    align-items: flex-start;
+    color: white;
+    padding-left: 60px;
+    padding-right: 60px;
+    height: 150px;
+}
+
+.invoice-info-main-mid-left{
+    display: flex;
+    flex-direction: column;
+    /*border: 2px solid red;*/
+    height: 100%;
+    justify-content: space-between;
+}
+
+.invoice-info-mid-left-invoiceDate {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.invoice-info-mid-left-paymentDue {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.invoice-info-mid-mid {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.invoice-info-mid-billTo{
+    display: flex;
+    flex-direction: column;
+}
+
+.invoice-info-mid-billToAddress-clientName {
+    display: flex;
+    flex-direction: column;
+}
+
+.invoice-info-mid-billToAddress {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.invoice-info-clientName {
+    color: white;
+}
+
+
+.invoice-info-main-bottom{
+    display: flex;
+    padding: 60px;
+    border-radius: 50px;
+}
+
+
+@media screen and (max-width: 2300px) {
+    .invoice-info-layout {
+        padding-left: 450px;
+        padding-right: 450px;
+    }
+
+}
+
+@media screen and (max-width: 1800px) {
+    .invoice-info-layout {
+        padding-left: 250px;
+        padding-right: 250px;
+    }
+
+}

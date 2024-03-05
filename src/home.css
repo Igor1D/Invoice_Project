@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+/*:root{*/
+/*    --primary-color: #2b2c37;*/
+/*    --secondary-color: #20212c;*/
+/*    --primary-font-color: white;*/
+/*    --secondary-font-color: #828fa3;*/
+/*    --primary-box-shadow: 0px 8px 18px 0px rgba(45, 45, 60, 0.56);*/
+/*}*/
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #141625;
+}
+#root {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.app-component {
+  font-family: "League Spartan", sans-serif;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
+  margin: 0;
+  /*border: 5px solid red;*/
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/*Sidebar*/
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  width: 150px;
+  background-color: #1E2139;
+  border-radius: 0 25px 25px 0;
+  margin: 0;
+  padding: 0;
+
+}
+
+.sidebar-bottom {
+  /*border-top: 1px solid #979797;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /*margin: 30px;*/
+  padding: 30px;
+  height: 80px;
+  background-color: #7C5DFA;
+  border-radius: 0 20px 20px 0 ;
+}
+
+.logo {
+  width: 50px;
+}
+
+.sidebar-logo {
+  display: flex;
+  justify-content: center;
+
+}
+
+.sidebar-avatar {
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+}
+
+.image-avatar {
+  border-radius: 40px 40px;
+  width: 60px;
+}
+
+
+
+/*Layout*/
+
+.layout {
+  /*width: 100%;*/
+  margin-top: 100px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  /*border: 2px solid green;*/
+  overflow-x: hidden;
+  padding-left: 650px;
+  padding-right: 650px;
+}
+
+/*Header*/
+
+.header {
+  display: flex;
+  /*width: 80%;*/
+  justify-content: space-between;
+  height: 100px;
+  /*border: 5px solid rgb(29, 220, 237);*/
+  right: 0;
+  font-size: 30px;
+  /*box-sizing: border-box;*/
+  /*position: relative;*/
+}
+
+.header-left {
+  /*border: 2px solid blue;*/
+  display: flex;
+  flex-direction: column;
+  /*overflow: hidden;*/
+  color: white;
+  justify-content: center;
+
+}
+
+.header-invoices-h2 {
+margin-bottom: 0;
+  margin-top: 0;
+
+}
+
+.header-invoices-amount{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+
+
+.header-right {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  /*border: 2px solid red;*/
+  align-items: center;
+  gap: 20px;
+
+}
+
+p {
+  margin-top: 0;
+}
+
+
+.header-invoices-amount{
+  font-size: 16px;
+}
+
+.header-filter-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0;
+}
+
+.filterP {
+  font-size: 18px;
+  align-items: center;
+}
+
+
+
+@media screen and (max-width: 2300px) {
+  .layout {
+    padding-left: 450px;
+    padding-right: 450px;
+  }
+
+}
+
+@media screen and (max-width: 1800px) {
+  .layout {
+    padding-left: 250px;
+    padding-right: 250px;
+  }
+
+}

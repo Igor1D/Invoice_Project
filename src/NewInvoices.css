@@ -1,0 +1,94 @@
+
+.MuiDrawer-paperAnchorLeft {
+    background-color: #141625 !important; /* Example background color */
+}
+
+.itemCost {
+    color: #DFE3FA;
+    align-self: center;
+
+}
+
+.sidebarTitles {
+    color: #7C5DFA;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    background-color: #131625;
+    padding: 50px;
+    font-family: 'League Spartan', Arial, sans-serif;
+
+
+}
+
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    background-color: #141625;
+
+}
+
+.billFromDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.billFrom-city-post-country {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.billToDiv {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 25px;
+
+}
+
+.billTo-city-post-country{
+    display: flex;
+
+    justify-content: space-between;
+}
+
+.invoiceDate-PaymentTerms {
+    display: flex;
+    gap: 25px;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.ItemList {
+    display: flex;
+    gap: 15px;
+    flex-direction: column;
+    margin-top: 25px;
+}
+
+.items-div {
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.buttonDiv{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+}
+
+.item {
+    display: flex;
+    
+}
+
+/*.MuiInputLabel-root {*/
+/*    color: black !important;*/
+/*}*/
