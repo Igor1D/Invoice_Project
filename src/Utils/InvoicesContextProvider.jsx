@@ -52,6 +52,22 @@ function InvoicesContextProvider({ children }) {
     location.reload();
   };
 
+  const deleteInvoice = async (id, invoices) => {
+    const results = await fetch(
+      `https://kanban-backend-server.onrender.com/invoices/${id}`,
+
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(invoices),
+      },
+    );
+    console.log("invoice" + id + "deleted");
+    location.reload();
+  };
+
   return (
     <InvoicesContext.Provider
       value={{ invoices, setInvoices, createInvoice, updateInvoice }}

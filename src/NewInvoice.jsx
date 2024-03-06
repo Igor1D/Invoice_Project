@@ -48,7 +48,7 @@ const CustomSelect = styled(Select)({
 });
 
 function NewInvoice() {
-  const { invoices, createInvoice } = UseInvoicesContext();
+  const { invoices, createInvoice, deleteInvoice } = UseInvoicesContext();
   const [selectedDate, setSelectedDate] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -149,10 +149,6 @@ function NewInvoice() {
 
       setErrors({});
       alert("submitted");
-      // const hours = 5;
-      // const hoursToMs = selectedDate.getTime() + 5 * 60 * 60 * 1000;
-      // const dateCopy = new Date(selectedDate.getTime())
-      // dateCopy.setTime(hoursToMs);
       createInvoice({
         ...form,
         paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
@@ -184,15 +180,6 @@ function NewInvoice() {
 
       setErrors(formErrors);
     }
-
-    // if (errors.length > 0) {
-    //   // There are errors in the form data
-    //   alert(errors.join("\n"));
-    // } else {
-    //   // The form data is valid, do something with it
-    // }
-
-    // console.log(e.target.name);
   }
 
   function handleDateChange(event) {
@@ -230,6 +217,15 @@ function NewInvoice() {
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
+        <div className="invoice-head">
+          {filteredInvoice ? (
+            <p className="newInvoice-editInvoice-p">
+              Edit #{filteredInvoice.id}
+            </p>
+          ) : (
+            <p className="newInvoice-editInvoice-p">New Invoice</p>
+          )}
+        </div>
         <div className="billFromDiv">
           <h4 className="sidebarTitles">Bill From</h4>
           <CustomTextField
@@ -434,46 +430,52 @@ function NewInvoice() {
           </Button>
         </div>
         <div className="buttonDiv">
-          <Button
-            // type="submit"
-            variant="contained"
-            sx={{
-              borderRadius: "40px",
-              padding: "13px 20px 13px 20px",
-              backgroundColor: "#EC5757",
-              textTransform: "none",
-              fontWeight: "600",
-            }}
-          >
-            Discard
-          </Button>
-          <Button
-            // type="submit"
-            variant="contained"
-            sx={{
-              borderRadius: "40px",
-              padding: "13px 20px 13px 20px",
-              backgroundColor: "#373B53",
-              textTransform: "none",
-              fontWeight: "600",
-            }}
-          >
-            Save as Draft
-          </Button>
+          {filteredInvoice ? (
+            <Button
+              // type="submit"
+              variant="contained"
+              sx={{
+                borderRadius: "40px",
+                padding: "13px 20px 13px 20px",
+                backgroundColor: "#EC5757",
+                textTransform: "none",
+                fontWeight: "600",
+              }}
+            >
+              Discard
+            </Button>
+          ) : (
+            <div></div>
+          )}
+          <div className="draft-save-buttons">
+            <Button
+              // type="submit"
+              variant="contained"
+              sx={{
+                borderRadius: "40px",
+                padding: "13px 20px 13px 20px",
+                backgroundColor: "#373B53",
+                textTransform: "none",
+                fontWeight: "600",
+              }}
+            >
+              Save as Draft
+            </Button>
 
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{
-              borderRadius: "40px",
-              padding: "13px 20px 13px 20px",
-              backgroundColor: "#7C5DFA",
-              textTransform: "none",
-              fontWeight: "600",
-            }}
-          >
-            Save & Send
-          </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                borderRadius: "40px",
+                padding: "13px 20px 13px 20px",
+                backgroundColor: "#7C5DFA",
+                textTransform: "none",
+                fontWeight: "600",
+              }}
+            >
+              {filteredInvoice ? "Save Changes" : "Save & Send"}
+            </Button>
+          </div>
         </div>
       </form>
     </>
