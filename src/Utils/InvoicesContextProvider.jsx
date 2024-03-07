@@ -42,7 +42,7 @@ function InvoicesContextProvider({ children }) {
     const results = await fetch(
       `https://kanban-backend-server.onrender.com/invoices/${id}`,
       {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },

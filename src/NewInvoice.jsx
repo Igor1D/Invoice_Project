@@ -48,7 +48,8 @@ const CustomSelect = styled(Select)({
 });
 
 function NewInvoice() {
-  const { invoices, createInvoice, deleteInvoice } = UseInvoicesContext();
+  const { invoices, createInvoice, deleteInvoice, updateInvoice } =
+    UseInvoicesContext();
   const [selectedDate, setSelectedDate] = useState(null);
   const [errors, setErrors] = useState({});
 
@@ -139,6 +140,13 @@ function NewInvoice() {
   // console.log(yourDate.toISOString().split('T')[0])
 
   // console.log(selectedDate.$d.toISOString());
+
+  function handleUpdate() {
+    updateInvoice(filteredInvoice.id, {
+      ...form,
+      paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -461,20 +469,36 @@ function NewInvoice() {
             >
               Save as Draft
             </Button>
-
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                borderRadius: "40px",
-                padding: "13px 20px 13px 20px",
-                backgroundColor: "#7C5DFA",
-                textTransform: "none",
-                fontWeight: "600",
-              }}
-            >
-              {filteredInvoice ? "Save Changes" : "Save & Send"}
-            </Button>
+            {filteredInvoice ? (
+              <Button
+                type="button"
+                onClick={handleUpdate}
+                variant="contained"
+                sx={{
+                  borderRadius: "40px",
+                  padding: "13px 20px 13px 20px",
+                  backgroundColor: "#7C5DFA",
+                  textTransform: "none",
+                  fontWeight: "600",
+                }}
+              >
+                Save Changes
+              </Button>
+            ) : (
+              <Button
+                type="submit"
+                variant="contained"
+                sx={{
+                  borderRadius: "40px",
+                  padding: "13px 20px 13px 20px",
+                  backgroundColor: "#7C5DFA",
+                  textTransform: "none",
+                  fontWeight: "600",
+                }}
+              >
+                Save & Send
+              </Button>
+            )}
           </div>
         </div>
       </form>
