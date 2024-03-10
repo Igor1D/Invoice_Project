@@ -148,6 +148,38 @@ function NewInvoice() {
     });
   }
 
+  function handleDiscard() {
+    setForm({
+      ...form,
+      createdAt: "",
+      paymentDue: setSelectedDate(null),
+      description: "",
+      paymentTerms: 1,
+      clientName: "",
+      clientEmail: "",
+      status: "",
+      senderAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+      },
+      clientAddress: {
+        street: "",
+        city: "",
+        postCode: "",
+        country: "",
+      },
+      items: [
+        {
+          name: "",
+          quantity: 1,
+          price: "",
+        },
+      ],
+    });
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -439,9 +471,12 @@ function NewInvoice() {
         </div>
         <div className="buttonDiv">
           {filteredInvoice ? (
+            <div></div>
+          ) : (
             <Button
-              // type="submit"
+              type="reset"
               variant="contained"
+              onClick={handleDiscard}
               sx={{
                 borderRadius: "40px",
                 padding: "13px 20px 13px 20px",
@@ -452,8 +487,6 @@ function NewInvoice() {
             >
               Discard
             </Button>
-          ) : (
-            <div></div>
           )}
           <div className="draft-save-buttons">
             <Button
