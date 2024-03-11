@@ -25,34 +25,32 @@ function AllInvoices() {
                 <p className="invoice-info">{invoice.clientName}</p>
               </div>
               <div className="invoice-rightSide-div">
-                <p className="invoice-info">${invoice.total}</p>
-
-                <div className="invoice-status">
-                  <Chip
-                    label={
-                      invoice.status.charAt(0).toUpperCase() +
-                      invoice.status.slice(1)
-                    }
-                    style={{
-                      backgroundColor: "#2B2736",
-                      color: "#FF8F00",
-                      padding: "15px",
-                      paddingTop: "25px",
-                      paddingBottom: "25px",
-                      fontSize: "18px",
-                      fontWeight: 550,
-                      borderRadius: "9px",
-                    }}
-                    icon={
-                      <CircleIcon
-                        style={{
-                          fontSize: "small",
-                          color: "#FF8F00",
-                        }}
-                      />
-                    }
-                  />
-                </div>
+                <p className="invoice-info">$ {invoice.total}</p>
+                <Chip
+                  label={
+                    invoice.status.charAt(0).toUpperCase() +
+                    invoice.status.slice(1)
+                  }
+                  style={{
+                    backgroundColor: "#2B2736",
+                    color: "#FF8F00",
+                    padding: "15px",
+                    paddingTop: "25px",
+                    paddingBottom: "25px",
+                    fontSize: "18px",
+                    fontWeight: 550,
+                    borderRadius: "9px",
+                    width: "130px",
+                  }}
+                  icon={
+                    <CircleIcon
+                      style={{
+                        fontSize: "small",
+                        color: "#FF8F00",
+                      }}
+                    />
+                  }
+                />
                 <Link
                   to={`/invoice/${invoice.id}`}
                   key={index}
