@@ -76,10 +76,10 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                 <p className="invoice-info-header-p">Status </p>
                 <div className="invoice-status">
                   <Chip
-                    label="Pending"
-                    onClick={() => {
-                      console.log("clicked");
-                    }}
+                    label={
+                      filteredInvoice.status.charAt(0).toUpperCase() +
+                      filteredInvoice.status.slice(1)
+                    }
                     style={{
                       backgroundColor: "#2B2736",
                       color: "#FF8F00",
