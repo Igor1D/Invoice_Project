@@ -68,6 +68,7 @@ function NewInvoice() {
   const schema = Yup.object().shape({
     clientEmail: Yup.string().email().required(),
     description: Yup.string().required(),
+    paymentDue: Yup.string().required(),
   });
 
   function itemCostFormat(num) {
@@ -83,7 +84,7 @@ function NewInvoice() {
     paymentTerms: filteredInvoice ? filteredInvoice.paymentTerms : 1,
     clientName: filteredInvoice ? filteredInvoice.clientName : "",
     clientEmail: filteredInvoice ? filteredInvoice.clientEmail : "",
-    status: filteredInvoice ? filteredInvoice.status : "",
+    status: filteredInvoice ? filteredInvoice.status : "pending",
     senderAddress: filteredInvoice
       ? filteredInvoice.senderAddress
       : {
@@ -380,7 +381,10 @@ function NewInvoice() {
                 // value={value}
                 // onChange={(newValue) => setValue(newValue)}
               />
+              <br />
+              <p style={{ color: "red" }}>{errors.paymentDue}</p>
             </FormControl>
+
             <FormControl fullWidth>
               <InputLabel id="select-label" sx={{ color: "white" }}>
                 Payment Terms
