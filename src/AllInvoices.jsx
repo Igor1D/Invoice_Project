@@ -11,7 +11,6 @@ import CircleIcon from "@mui/icons-material/Circle.js";
 
 function AllInvoices() {
   const { invoices, setInvoices } = UseInvoicesContext();
-  console.log(invoices);
 
   return (
     <div className="invoices-container">
