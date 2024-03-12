@@ -32,8 +32,22 @@ function AllInvoices() {
                     invoice.status.slice(1)
                   }
                   style={{
-                    backgroundColor: "#2B2736",
-                    color: "#FF8F00",
+                    backgroundColor:
+                      invoice.status === "pending"
+                        ? "#2A2736"
+                        : invoice.status === "paid"
+                          ? "#1E2C3E"
+                          : invoice.status === "draft"
+                            ? "#292C44"
+                            : "",
+                    color:
+                      invoice.status === "pending"
+                        ? "#FF8F00"
+                        : invoice.status === "paid"
+                          ? "#33D69F"
+                          : invoice.status === "draft"
+                            ? "#E0E4FA"
+                            : "",
                     padding: "15px",
                     paddingTop: "25px",
                     paddingBottom: "25px",
@@ -46,7 +60,14 @@ function AllInvoices() {
                     <CircleIcon
                       style={{
                         fontSize: "small",
-                        color: "#FF8F00",
+                        color:
+                          invoice.status === "pending"
+                            ? "#FF8F00"
+                            : invoice.status === "paid"
+                              ? "#33D69F"
+                              : invoice.status === "draft"
+                                ? "#E0E4FA"
+                                : "",
                       }}
                     />
                   }
