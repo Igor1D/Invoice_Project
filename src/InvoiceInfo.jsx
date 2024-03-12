@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AllInvoices from "./AllInvoices.jsx";
 import "./invoiceInfo.css";
 import Button from "@mui/material/Button";
@@ -15,6 +15,8 @@ import NewInvoice from "./NewInvoice.jsx";
 function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
   const { invoices, setInvoices } = UseInvoicesContext();
 
+  // const [chipColor, setSetChipColor] = useState(null);
+
   const { id } = useParams();
   // console.log(id);
   // console.log(invoices);
@@ -22,6 +24,42 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
   const filteredInvoice = invoices
     ? invoices.filter((invoice) => invoice.id === id)[0]
     : null;
+
+  // function handleStatusColorChange() {
+  //   if (filteredInvoice.status === "pending") {
+  //     return "orange";
+  //   } else if (filteredInvoice.status === "paid") {
+  //     return "green";
+  //   } else if (filteredInvoice.status === "draft") {
+  //     return "blue";
+  //   }
+  // }
+
+  const statusBackground = {
+    pending: "orange",
+    paid: "green",
+    draft: "blue",
+  };
+
+  // const currentColor = statusToColor[filteredInvoice.status];
+
+  const statusBackgroundColor =
+    filteredInvoice.status === "pending"
+      ? "#2A2736"
+      : filteredInvoice.status === "paid"
+        ? "#1E2C3E"
+        : filteredInvoice.status === "draft"
+          ? "#292C44"
+          : "";
+
+  const statusFontNCircleColor =
+    filteredInvoice.status === "pending"
+      ? "#FF8F00"
+      : filteredInvoice.status === "paid"
+        ? "#33D69F"
+        : filteredInvoice.status === "draft"
+          ? "#E0E4FA"
+          : "";
 
   const navigate = useNavigate();
 
@@ -81,8 +119,8 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                       filteredInvoice.status.slice(1)
                     }
                     style={{
-                      backgroundColor: "#2B2736",
-                      color: "#FF8F00",
+                      backgroundColor: statusBackgroundColor,
+                      color: statusFontNCircleColor,
                       padding: "15px",
                       paddingTop: "25px",
                       paddingBottom: "25px",
@@ -94,7 +132,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                       <CircleIcon
                         style={{
                           fontSize: "small",
-                          color: "#FF8F00",
+                          color: statusFontNCircleColor,
                         }}
                       />
                     }
