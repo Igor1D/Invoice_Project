@@ -244,7 +244,7 @@ function NewInvoice() {
 
       setErrors({});
       alert("submitted");
-      createInvoice({
+      updateInvoice(filteredInvoice.id, {
         ...form,
         status: "draft",
         paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
