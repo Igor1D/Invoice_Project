@@ -68,7 +68,7 @@ function NewInvoice() {
   const schema = Yup.object().shape({
     clientEmail: Yup.string().email().required(),
     description: Yup.string().required(),
-    paymentDue: Yup.string().required(),
+    // paymentDue: Yup.string().required(),
   });
 
   function itemCostFormat(num) {
@@ -181,6 +181,8 @@ function NewInvoice() {
     });
   }
 
+  // Submit handler
+
   function handleSubmit(e) {
     e.preventDefault();
     try {
@@ -192,6 +194,50 @@ function NewInvoice() {
       alert("submitted");
       createInvoice({
         ...form,
+        paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
+        createdAt: yourDate.toISOString().split("T")[0],
+        items: form.items.map((item) => {
+          return { ...item, total: item.price * item.quantity };
+        }),
+        // form.items.map(item => return {...item, total: item.price * item.quantity}),
+        total: form.items.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0,
+        ),
+      });
+    } catch (err) {
+      const { inner } = err;
+      let formErrors = {};
+
+      if (inner && inner[0]) {
+        inner.forEach((error) => {
+          const { path, message } = error;
+
+          if (!formErrors[path]) {
+            formErrors[path] = message;
+          }
+        });
+      }
+
+      console.log("form errors", formErrors);
+
+      setErrors(formErrors);
+    }
+  }
+
+  // Save as draft handler
+  function handleSaveAsDraft(e) {
+    e.preventDefault();
+    try {
+      schema.validateSync(form, {
+        abortEarly: false,
+      });
+
+      setErrors({});
+      alert("submitted");
+      createInvoice({
+        ...form,
+        status: "draft",
         paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
         createdAt: yourDate.toISOString().split("T")[0],
         items: form.items.map((item) => {
@@ -495,6 +541,7 @@ function NewInvoice() {
           <div className="draft-save-buttons">
             <Button
               // type="submit"
+              onClick={handleSaveAsDraft}
               variant="contained"
               sx={{
                 borderRadius: "40px",
