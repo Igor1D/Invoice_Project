@@ -19,7 +19,7 @@ function AllInvoices() {
           return (
             <div className="invoice-div" key={invoice.id}>
               <div className="invoice-leftSide-div">
-                <p className="invoice-info">#{invoice.id}</p>
+                <p className="invoice-info">#{invoice.id.toUpperCase()}</p>
                 <p className="invoice-info">{invoice.paymentDue}</p>
                 <p className="invoice-info">{invoice.clientName}</p>
               </div>

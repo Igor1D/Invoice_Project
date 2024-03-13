@@ -37,24 +37,6 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
   //
   // }, [filteredInvoice]);
 
-  // const statusBackgroundColor =
-  //   filteredInvoice.status === "pending"
-  //     ? "#2A2736"
-  //     : filteredInvoice.status === "paid"
-  //       ? "#1E2C3E"
-  //       : filteredInvoice.status === "draft"
-  //         ? "#292C44"
-  //         : null;
-  //
-  // const statusFontNCircleColor =
-  //   filteredInvoice.status === "pending"
-  //     ? "#FF8F00"
-  //     : filteredInvoice.status === "paid"
-  //       ? "#33D69F"
-  //       : filteredInvoice.status === "draft"
-  //         ? "#E0E4FA"
-  //         : null;
-
   const navigate = useNavigate();
 
   const handleClick = () => {
