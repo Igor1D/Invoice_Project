@@ -146,6 +146,15 @@ function NewInvoice() {
     updateInvoice(filteredInvoice.id, {
       ...form,
       paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
+      createdAt: yourDate.toISOString().split("T")[0],
+      items: filteredInvoice.items.map((item) => {
+        return { ...item, total: item.price * item.quantity };
+      }),
+      // form.items.map(item => return {...item, total: item.price * item.quantity}),
+      total: form.items.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0,
+      ),
     });
   }
 

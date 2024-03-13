@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllInvoices from "./AllInvoices.jsx";
 import "./invoiceInfo.css";
 import Button from "@mui/material/Button";
@@ -25,41 +25,35 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
     ? invoices.filter((invoice) => invoice.id === id)[0]
     : null;
 
-  // function handleStatusColorChange() {
-  //   if (filteredInvoice.status === "pending") {
-  //     return "orange";
-  //   } else if (filteredInvoice.status === "paid") {
-  //     return "green";
-  //   } else if (filteredInvoice.status === "draft") {
-  //     return "blue";
-  //   }
-  // }
+  // useEffect(() => {
+  //   const statusBackgroundColor =
+  //       filteredInvoice.status === "pending"
+  //           ? "#2A2736"
+  //           : filteredInvoice.status === "paid"
+  //               ? "#1E2C3E"
+  //               : filteredInvoice.status === "draft"
+  //                   ? "#292C44"
+  //                   : null;
+  //
+  // }, [filteredInvoice]);
 
-  const statusBackground = {
-    pending: "orange",
-    paid: "green",
-    draft: "blue",
-  };
-
-  // const currentColor = statusToColor[filteredInvoice.status];
-
-  const statusBackgroundColor =
-    filteredInvoice.status === "pending"
-      ? "#2A2736"
-      : filteredInvoice.status === "paid"
-        ? "#1E2C3E"
-        : filteredInvoice.status === "draft"
-          ? "#292C44"
-          : "";
-
-  const statusFontNCircleColor =
-    filteredInvoice.status === "pending"
-      ? "#FF8F00"
-      : filteredInvoice.status === "paid"
-        ? "#33D69F"
-        : filteredInvoice.status === "draft"
-          ? "#E0E4FA"
-          : "";
+  // const statusBackgroundColor =
+  //   filteredInvoice.status === "pending"
+  //     ? "#2A2736"
+  //     : filteredInvoice.status === "paid"
+  //       ? "#1E2C3E"
+  //       : filteredInvoice.status === "draft"
+  //         ? "#292C44"
+  //         : null;
+  //
+  // const statusFontNCircleColor =
+  //   filteredInvoice.status === "pending"
+  //     ? "#FF8F00"
+  //     : filteredInvoice.status === "paid"
+  //       ? "#33D69F"
+  //       : filteredInvoice.status === "draft"
+  //         ? "#E0E4FA"
+  //         : null;
 
   const navigate = useNavigate();
 
@@ -119,8 +113,22 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                       filteredInvoice.status.slice(1)
                     }
                     style={{
-                      backgroundColor: statusBackgroundColor,
-                      color: statusFontNCircleColor,
+                      backgroundColor:
+                        filteredInvoice.status === "pending"
+                          ? "#2A2736"
+                          : filteredInvoice.status === "paid"
+                            ? "#1E2C3E"
+                            : filteredInvoice.status === "draft"
+                              ? "#292C44"
+                              : null,
+                      color:
+                        filteredInvoice.status === "pending"
+                          ? "#FF8F00"
+                          : filteredInvoice.status === "paid"
+                            ? "#33D69F"
+                            : filteredInvoice.status === "draft"
+                              ? "#E0E4FA"
+                              : null,
                       padding: "15px",
                       paddingTop: "25px",
                       paddingBottom: "25px",
@@ -132,7 +140,14 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                       <CircleIcon
                         style={{
                           fontSize: "small",
-                          color: statusFontNCircleColor,
+                          color:
+                            filteredInvoice.status === "pending"
+                              ? "#FF8F00"
+                              : filteredInvoice.status === "paid"
+                                ? "#33D69F"
+                                : filteredInvoice.status === "draft"
+                                  ? "#E0E4FA"
+                                  : null,
                         }}
                       />
                     }
