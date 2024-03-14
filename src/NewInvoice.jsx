@@ -16,6 +16,7 @@ import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import moment from "moment/moment.js";
+import { UseInvoicesFormContext } from "./Utils/InvoicesFormContext.jsx";
 
 const CustomTextField = styled(TextField)({
   backgroundColor: "#252945",
@@ -50,7 +51,9 @@ const CustomSelect = styled(Select)({
 function NewInvoice() {
   const { invoices, createInvoice, deleteInvoice, updateInvoice } =
     UseInvoicesContext();
-  const [selectedDate, setSelectedDate] = useState(null);
+  // const [selectedDate, setSelectedDate] = useState(null);
+  const { form, setForm, selectedDate, setSelectedDate } =
+    UseInvoicesFormContext();
   const [errors, setErrors] = useState({});
 
   const { pathname } = useLocation();
@@ -77,40 +80,40 @@ function NewInvoice() {
 
   // const [totalItemsCost, setTotalItemsCost] = useState(null);
 
-  const [form, setForm] = useImmer({
-    createdAt: "",
-    paymentDue: filteredInvoice ? filteredInvoice.paymentDue : "",
-    description: filteredInvoice ? filteredInvoice.description : "",
-    paymentTerms: filteredInvoice ? filteredInvoice.paymentTerms : 1,
-    clientName: filteredInvoice ? filteredInvoice.clientName : "",
-    clientEmail: filteredInvoice ? filteredInvoice.clientEmail : "",
-    status: filteredInvoice ? filteredInvoice.status : "pending",
-    senderAddress: filteredInvoice
-      ? filteredInvoice.senderAddress
-      : {
-          street: "",
-          city: "",
-          postCode: "",
-          country: "",
-        },
-    clientAddress: filteredInvoice
-      ? filteredInvoice.clientAddress
-      : {
-          street: "",
-          city: "",
-          postCode: "",
-          country: "",
-        },
-    items: filteredInvoice
-      ? filteredInvoice.items
-      : [
-          {
-            name: "",
-            quantity: 1,
-            price: "",
-          },
-        ],
-  });
+  // const [form, setForm] = useImmer({
+  //   createdAt: "",
+  //   paymentDue: filteredInvoice ? filteredInvoice.paymentDue : "",
+  //   description: filteredInvoice ? filteredInvoice.description : "",
+  //   paymentTerms: filteredInvoice ? filteredInvoice.paymentTerms : 1,
+  //   clientName: filteredInvoice ? filteredInvoice.clientName : "",
+  //   clientEmail: filteredInvoice ? filteredInvoice.clientEmail : "",
+  //   status: filteredInvoice ? filteredInvoice.status : "pending",
+  //   senderAddress: filteredInvoice
+  //     ? filteredInvoice.senderAddress
+  //     : {
+  //         street: "",
+  //         city: "",
+  //         postCode: "",
+  //         country: "",
+  //       },
+  //   clientAddress: filteredInvoice
+  //     ? filteredInvoice.clientAddress
+  //     : {
+  //         street: "",
+  //         city: "",
+  //         postCode: "",
+  //         country: "",
+  //       },
+  //   items: filteredInvoice
+  //     ? filteredInvoice.items
+  //     : [
+  //         {
+  //           name: "",
+  //           quantity: 1,
+  //           price: "",
+  //         },
+  //       ],
+  // });
 
   // console.log(form.itemList[0].itemName)
 
@@ -249,11 +252,11 @@ function NewInvoice() {
         status: "draft",
         paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
         createdAt: yourDate.toISOString().split("T")[0],
-        items: form.items.map((item) => {
+        items: filteredInvoice.items.map((item) => {
           return { ...item, total: item.price * item.quantity };
         }),
         // form.items.map(item => return {...item, total: item.price * item.quantity}),
-        total: form.items.reduce(
+        total: filteredInvoice.items.reduce(
           (total, item) => total + item.price * item.quantity,
           0,
         ),

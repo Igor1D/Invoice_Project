@@ -8,12 +8,18 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import Chip from "@mui/material/Chip";
 import CircleIcon from "@mui/icons-material/Circle";
+import { UseInvoicesFormContext } from "./Utils/InvoicesFormContext.jsx";
 import { orange } from "@mui/material/colors";
 import NewInvoice from "./NewInvoice.jsx";
+import moment from "moment";
 // import SidePanel from "./SidePanel.jsx";
 
 function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
-  const { invoices, setInvoices } = UseInvoicesContext();
+  const { invoices, createInvoice, deleteInvoice, updateInvoice } =
+    UseInvoicesContext();
+
+  const { form, setForm, selectedDate, setSelectedDate } =
+    UseInvoicesFormContext();
 
   // const [chipColor, setSetChipColor] = useState(null);
 
@@ -25,18 +31,24 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
     ? invoices.filter((invoice) => invoice.id === id)[0]
     : null;
 
-  // useEffect(() => {
-  //   const statusBackgroundColor =
-  //       filteredInvoice.status === "pending"
-  //           ? "#2A2736"
-  //           : filteredInvoice.status === "paid"
-  //               ? "#1E2C3E"
-  //               : filteredInvoice.status === "draft"
-  //                   ? "#292C44"
-  //                   : null;
-  //
-  // }, [filteredInvoice]);
-
+  function markAsPaid(e) {
+    e.preventDefault();
+    let yourDate;
+    updateInvoice(filteredInvoice.id, {
+      ...form,
+      status: "draft",
+      paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
+      createdAt: yourDate.toISOString().split("T")[0],
+      items: filteredInvoice.items.map((item) => {
+        return { ...item, total: item.price * item.quantity };
+      }),
+      // form.items.map(item => return {...item, total: item.price * item.quantity}),
+      total: filteredInvoice.items.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0,
+      ),
+    });
+  }
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -164,6 +176,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                   Delete
                 </Button>
                 <Button
+                  onClick={markAsPaid}
                   variant="contained"
                   sx={{
                     borderRadius: "40px",

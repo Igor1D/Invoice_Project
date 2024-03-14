@@ -70,7 +70,13 @@ function InvoicesContextProvider({ children }) {
 
   return (
     <InvoicesContext.Provider
-      value={{ invoices, setInvoices, createInvoice, updateInvoice }}
+      value={{
+        invoices,
+        setInvoices,
+        createInvoice,
+        updateInvoice,
+        deleteInvoice,
+      }}
     >
       {children}
     </InvoicesContext.Provider>
