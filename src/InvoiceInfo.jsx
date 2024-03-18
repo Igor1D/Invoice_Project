@@ -14,8 +14,7 @@ import moment from "moment";
 // import SidePanel from "./SidePanel.jsx";
 
 function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
-  const { invoices, createInvoice, deleteInvoice, updateInvoice } =
-    UseInvoicesContext();
+  const { invoices, patchInvoice, deleteInvoice } = UseInvoicesContext();
 
   const [selectedDate, setSelectedDate] = useState(null);
 
@@ -29,22 +28,13 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
 
   function markAsPaid(e) {
     e.preventDefault();
-    let yourDate;
-    updateInvoice(filteredInvoice.id, {
-      ...form,
-      status: "draft",
-      paymentDue: moment(selectedDate.$d).format("YYYY-MM-DD"),
-      createdAt: yourDate.toISOString().split("T")[0],
-      items: filteredInvoice.items.map((item) => {
-        return { ...item, total: item.price * item.quantity };
-      }),
-      // form.items.map(item => return {...item, total: item.price * item.quantity}),
-      total: filteredInvoice.items.reduce(
-        (total, item) => total + item.price * item.quantity,
-        0,
-      ),
+    patchInvoice(filteredInvoice.id, {
+      status: "paid",
     });
   }
+
+  function removeInvoice() {}
+
   const navigate = useNavigate();
 
   const handleClick = () => {

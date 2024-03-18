@@ -52,6 +52,22 @@ function InvoicesContextProvider({ children }) {
     location.reload();
   };
 
+  const patchInvoice = async (id, invoice) => {
+    // console.log(id, task)
+
+    const results = await fetch(
+      `https://kanban-backend-server.onrender.com/invoices/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(invoice),
+      },
+    );
+    location.reload();
+  };
+
   const deleteInvoice = async (id, invoices) => {
     const results = await fetch(
       `https://kanban-backend-server.onrender.com/invoices/${id}`,
@@ -76,6 +92,7 @@ function InvoicesContextProvider({ children }) {
         createInvoice,
         updateInvoice,
         deleteInvoice,
+        patchInvoice,
       }}
     >
       {children}
