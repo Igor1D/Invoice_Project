@@ -8,15 +8,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import Chip from "@mui/material/Chip";
 import CircleIcon from "@mui/icons-material/Circle";
-import { orange } from "@mui/material/colors";
-import NewInvoice from "./NewInvoice.jsx";
-import moment from "moment";
-// import SidePanel from "./SidePanel.jsx";
+import Alert from "@mui/material/Alert";
 
 function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
   const { invoices, patchInvoice, deleteInvoice } = UseInvoicesContext();
 
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const navigate = useNavigate();
 
   const { id } = useParams();
   // console.log(id);
@@ -33,9 +32,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
     });
   }
 
-  function removeInvoice() {}
-
-  const navigate = useNavigate();
+  const handleDeleteInvoice = async () => await deleteInvoice(id);
 
   const handleClick = () => {
     navigate(-1);
@@ -151,6 +148,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                 </Button>
                 <Button
                   variant="contained"
+                  onClick={handleDeleteInvoice}
                   sx={{
                     borderRadius: "40px",
                     padding: "15px 15px 15px 15px",

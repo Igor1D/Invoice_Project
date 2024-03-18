@@ -1,9 +1,11 @@
 import React from "react";
 import { createContext, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const InvoicesContext = createContext();
 function InvoicesContextProvider({ children }) {
-  const [invoices, setInvoices] = useState();
+  const [invoices, setInvoices] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getInvoices() {
@@ -80,8 +82,10 @@ function InvoicesContextProvider({ children }) {
         body: JSON.stringify(invoices),
       },
     );
+    setInvoices((invoices) => invoices.filter((invoice) => invoice.id !== id));
+    navigate("/");
     console.log("invoice" + id + "deleted");
-    location.reload();
+    // location.reload();
   };
 
   return (
