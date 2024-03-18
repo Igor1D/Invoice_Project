@@ -8,7 +8,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import Chip from "@mui/material/Chip";
 import CircleIcon from "@mui/icons-material/Circle";
-import { UseInvoicesFormContext } from "./Utils/InvoicesFormContext.jsx";
 import { orange } from "@mui/material/colors";
 import NewInvoice from "./NewInvoice.jsx";
 import moment from "moment";
@@ -18,10 +17,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
   const { invoices, createInvoice, deleteInvoice, updateInvoice } =
     UseInvoicesContext();
 
-  const { form, setForm, selectedDate, setSelectedDate } =
-    UseInvoicesFormContext();
-
-  // const [chipColor, setSetChipColor] = useState(null);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   const { id } = useParams();
   // console.log(id);

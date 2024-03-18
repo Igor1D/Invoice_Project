@@ -14,7 +14,12 @@ function SidePanelContextProvider({ children }) {
   // const [currentInvoiceData, setCurrentInvoiceData] = useState();
 
   return (
-    <SidePanelContext.Provider value={{ isSidePanelOpen, setSidePanelOpen }}>
+    <SidePanelContext.Provider
+      value={{
+        isSidePanelOpen,
+        setSidePanelOpen,
+      }}
+    >
       <Drawer
         anchor="left"
         open={isSidePanelOpen}

@@ -16,7 +16,6 @@ import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import { useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import moment from "moment/moment.js";
-import { UseInvoicesFormContext } from "./Utils/InvoicesFormContext.jsx";
 
 const CustomTextField = styled(TextField)({
   backgroundColor: "#252945",
@@ -51,15 +50,15 @@ const CustomSelect = styled(Select)({
 function NewInvoice() {
   const { invoices, createInvoice, deleteInvoice, updateInvoice } =
     UseInvoicesContext();
-  // const [selectedDate, setSelectedDate] = useState(null);
-  const { form, setForm, selectedDate, setSelectedDate } =
-    UseInvoicesFormContext();
+  const [selectedDate, setSelectedDate] = useState(null);
   const [errors, setErrors] = useState({});
 
   const { pathname } = useLocation();
 
   const id = pathname.slice(9);
   // console.log(pathname.slice(9))
+
+  console.log(id);
 
   //
   const filteredInvoice = invoices
@@ -78,44 +77,42 @@ function NewInvoice() {
     return num.toFixed(2);
   }
 
-  // const [totalItemsCost, setTotalItemsCost] = useState(null);
+  const [form, setForm] = useImmer({
+    createdAt: "",
+    paymentDue: filteredInvoice ? filteredInvoice.paymentDue : "",
+    description: filteredInvoice ? filteredInvoice.description : "",
+    paymentTerms: filteredInvoice ? filteredInvoice.paymentTerms : 1,
+    clientName: filteredInvoice ? filteredInvoice.clientName : "",
+    clientEmail: filteredInvoice ? filteredInvoice.clientEmail : "",
+    status: filteredInvoice ? filteredInvoice.status : "pending",
+    senderAddress: filteredInvoice
+      ? filteredInvoice.senderAddress
+      : {
+          street: "",
+          city: "",
+          postCode: "",
+          country: "",
+        },
+    clientAddress: filteredInvoice
+      ? filteredInvoice.clientAddress
+      : {
+          street: "",
+          city: "",
+          postCode: "",
+          country: "",
+        },
+    items: filteredInvoice
+      ? filteredInvoice.items
+      : [
+          {
+            name: "",
+            quantity: 1,
+            price: "",
+          },
+        ],
+  });
 
-  // const [form, setForm] = useImmer({
-  //   createdAt: "",
-  //   paymentDue: filteredInvoice ? filteredInvoice.paymentDue : "",
-  //   description: filteredInvoice ? filteredInvoice.description : "",
-  //   paymentTerms: filteredInvoice ? filteredInvoice.paymentTerms : 1,
-  //   clientName: filteredInvoice ? filteredInvoice.clientName : "",
-  //   clientEmail: filteredInvoice ? filteredInvoice.clientEmail : "",
-  //   status: filteredInvoice ? filteredInvoice.status : "pending",
-  //   senderAddress: filteredInvoice
-  //     ? filteredInvoice.senderAddress
-  //     : {
-  //         street: "",
-  //         city: "",
-  //         postCode: "",
-  //         country: "",
-  //       },
-  //   clientAddress: filteredInvoice
-  //     ? filteredInvoice.clientAddress
-  //     : {
-  //         street: "",
-  //         city: "",
-  //         postCode: "",
-  //         country: "",
-  //       },
-  //   items: filteredInvoice
-  //     ? filteredInvoice.items
-  //     : [
-  //         {
-  //           name: "",
-  //           quantity: 1,
-  //           price: "",
-  //         },
-  //       ],
-  // });
-
-  // console.log(form.itemList[0].itemName)
+  console.log(form);
 
   function handleChange(e) {
     setForm((draft) => {
@@ -450,7 +447,11 @@ function NewInvoice() {
               <CustomSelect
                 labelId="select-label"
                 id="select-label"
-                value={form.paymentTerms}
+                value={
+                  filteredInvoice
+                    ? filteredInvoice.paymentTerms
+                    : form.paymentTerms
+                }
                 label="Payment Terms"
                 onChange={handleChange}
                 name="paymentTerms"
