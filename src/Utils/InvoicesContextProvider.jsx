@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const InvoicesContext = createContext();
 function InvoicesContextProvider({ children }) {
-  const [invoices, setInvoices] = useState([]);
+  const [invoices, setInvoices] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
