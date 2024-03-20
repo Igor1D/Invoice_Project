@@ -71,7 +71,7 @@ function NewInvoice() {
     : null;
 
   const [selectedDate, setSelectedDate] = useState(
-    filteredInvoice ? moment(filteredInvoice.paymentDue, "DD-MM-YYYY") : null,
+    filteredInvoice ? moment(filteredInvoice.paymentDue, "YYYY-MM-DD") : null,
   );
   // console.log(filteredInvoice)
 
@@ -154,7 +154,7 @@ function NewInvoice() {
   function handleUpdate() {
     updateInvoice(filteredInvoice.id, {
       ...form,
-      paymentDue: moment(selectedDate, "DD-MM-YYYY").format("YYYY-MM-DD"),
+      paymentDue: moment(selectedDate, "YYYY-MM-DD").format("YYYY-MM-DD"),
       createdAt: yourDate.toISOString().split("T")[0],
       items: filteredInvoice.items.map((item) => {
         return { ...item, total: item.price * item.quantity };
@@ -212,7 +212,7 @@ function NewInvoice() {
       alert("submitted");
       createInvoice({
         ...form,
-        paymentDue: moment(selectedDate, "DD-MM-YYYY").format("YYYY-MM-DD"),
+        paymentDue: moment(selectedDate, "YYYY-MM-DD").format("YYYY-MM-DD"),
         createdAt: yourDate.toISOString().split("T")[0],
         items: form.items.map((item) => {
           return { ...item, total: item.price * item.quantity };
@@ -256,7 +256,7 @@ function NewInvoice() {
       updateInvoice(filteredInvoice.id, {
         ...form,
         status: "draft",
-        paymentDue: moment(selectedDate, "DD-MM-YYYY").format("YYYY-MM-DD"),
+        paymentDue: moment(selectedDate, "YYYY-MM-DD").format("YYYY-MM-DD"),
         createdAt: yourDate.toISOString().split("T")[0],
         items: filteredInvoice.items.map((item) => {
           return { ...item, total: item.price * item.quantity };
