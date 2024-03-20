@@ -9,6 +9,7 @@ import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import Chip from "@mui/material/Chip";
 import CircleIcon from "@mui/icons-material/Circle";
 import Alert from "@mui/material/Alert";
+import moment from "moment";
 
 function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
   const { invoices, patchInvoice, deleteInvoice } = UseInvoicesContext();
@@ -208,7 +209,9 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                   <div className="invoice-info-mid-left-paymentDue">
                     <p className="invoice-info-title">Invoice Due</p>
                     <p className="invoice-info-white">
-                      {filteredInvoice.paymentDue}
+                      {moment(filteredInvoice.paymentDue, "YYYY-MM-DD").format(
+                        "Do MMM YYYY",
+                      )}
                     </p>
                   </div>
                 </div>

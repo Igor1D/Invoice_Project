@@ -154,7 +154,7 @@ function NewInvoice() {
   function handleUpdate() {
     updateInvoice(filteredInvoice.id, {
       ...form,
-      paymentDue: moment(selectedDate).format("DD/MM/YYYY"),
+      paymentDue: moment(selectedDate, "DD-MM-YYYY").format("YYYY-MM-DD"),
       createdAt: yourDate.toISOString().split("T")[0],
       items: filteredInvoice.items.map((item) => {
         return { ...item, total: item.price * item.quantity };
@@ -212,7 +212,7 @@ function NewInvoice() {
       alert("submitted");
       createInvoice({
         ...form,
-        paymentDue: moment(selectedDate).format("DD/MM/YYYY"),
+        paymentDue: moment(selectedDate, "DD-MM-YYYY").format("YYYY-MM-DD"),
         createdAt: yourDate.toISOString().split("T")[0],
         items: form.items.map((item) => {
           return { ...item, total: item.price * item.quantity };
@@ -252,11 +252,11 @@ function NewInvoice() {
       });
 
       setErrors({});
-      alert("submitted");
+      // alert("submitted");
       updateInvoice(filteredInvoice.id, {
         ...form,
         status: "draft",
-        paymentDue: moment(selectedDate).format("DD/MM/YYYY"),
+        paymentDue: moment(selectedDate, "DD-MM-YYYY").format("YYYY-MM-DD"),
         createdAt: yourDate.toISOString().split("T")[0],
         items: filteredInvoice.items.map((item) => {
           return { ...item, total: item.price * item.quantity };
