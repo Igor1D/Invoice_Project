@@ -252,7 +252,7 @@ function NewInvoice() {
       });
 
       setErrors({});
-      // alert("submitted");
+
       updateInvoice(filteredInvoice.id, {
         ...form,
         status: "draft",
