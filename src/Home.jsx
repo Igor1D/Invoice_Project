@@ -5,17 +5,29 @@ import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import IconButton from "@mui/material/IconButton";
-// import SidePanel from "./SidePanel.jsx";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
+import Checkbox from "@mui/material/Checkbox";
+import { CheckBox } from "@mui/icons-material";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
   const { createInvoice } = UseInvoicesContext();
+  const totalInvoices = invoices ? Object.keys(invoices).length : "...";
 
-  // const [isSidePanelOpen, setSidePanelOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
-  const totalInvoices = invoices ? Object.keys(invoices).length : null;
-
-  console.log(invoices);
+  // Modal
+  const [checked, setChecked] = useState(true);
+  const handleChange = (event) => setChecked(event.target.checked);
 
   return (
     <>
@@ -47,9 +59,34 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
             <div className="header-right">
               <div className="header-filter-div">
                 <p className="filterP">Filter by status</p>
-                <IconButton color="primary" aria-label="info">
+                <IconButton
+                  color="primary"
+                  aria-label="info"
+                  onClick={handleClick}
+                >
                   <KeyboardArrowDownIcon sx={{ fontSize: 20 }} />
                 </IconButton>
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  MenuListProps={{
+                    "aria-labelledby": "basic-button",
+                  }}
+                >
+                  <MenuItem onClick={handleClose}>
+                    <FormControlLabel
+                      sx={{ pl: 0 }}
+                      control={
+                        <CheckBox checked={checked} onChange={handleChange} />
+                      }
+                      label="Draft"
+                    />
+                  </MenuItem>
+                  {/*<MenuItem onClick={handleClose}>My account</MenuItem>*/}
+                  {/*<MenuItem onClick={handleClose}>Logout</MenuItem>*/}
+                </Menu>
               </div>
               <Button
                 variant="contained"
