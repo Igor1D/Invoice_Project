@@ -26,9 +26,25 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
   };
 
   // Checkbox
-  const [checked, setChecked] = useState(false);
-  console.log(checked);
-  const handleChange = (event) => setChecked(event.target.checked);
+  // const [checked, setChecked] = useState(false);
+  // console.log(checked);
+  // const handleChange = (event) => setChecked(event.target.checked);
+
+  const [filterState, setFilterState] = useState({
+    draft: false,
+    paid: false,
+    pending: false,
+  });
+
+  const handleChange = (event) =>
+    setFilterState({
+      ...filterState,
+      [event.target.name]: event.target.checked,
+    });
+
+  const { draft, paid, pending } = filterState;
+
+  console.log(typeof filterState);
 
   return (
     <>
@@ -80,7 +96,11 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
                     <FormControlLabel
                       sx={{ pl: 0 }}
                       control={
-                        <Checkbox checked={checked} onChange={handleChange} />
+                        <Checkbox
+                          checked={draft}
+                          onChange={handleChange}
+                          name="draft"
+                        />
                       }
                       label="Draft"
                     />
@@ -89,7 +109,11 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
                     <FormControlLabel
                       sx={{ pl: 0 }}
                       control={
-                        <Checkbox checked={checked} onChange={handleChange} />
+                        <Checkbox
+                          checked={pending}
+                          onChange={handleChange}
+                          name="pending"
+                        />
                       }
                       label="Pending"
                     />
@@ -98,7 +122,11 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
                     <FormControlLabel
                       sx={{ pl: 0 }}
                       control={
-                        <Checkbox checked={checked} onChange={handleChange} />
+                        <Checkbox
+                          checked={paid}
+                          onChange={handleChange}
+                          name="paid"
+                        />
                       }
                       label="Paid"
                     />
