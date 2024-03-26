@@ -9,14 +9,14 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import Checkbox from "@mui/material/Checkbox";
-import { CheckBox } from "@mui/icons-material";
+// import { Checkbox } from "@mui/icons-material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
 function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
   const { createInvoice } = UseInvoicesContext();
   const totalInvoices = invoices ? Object.keys(invoices).length : "...";
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -25,8 +25,9 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
     setAnchorEl(null);
   };
 
-  // Modal
-  const [checked, setChecked] = useState(true);
+  // Checkbox
+  const [checked, setChecked] = useState(false);
+  console.log(checked);
   const handleChange = (event) => setChecked(event.target.checked);
 
   return (
@@ -79,7 +80,7 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
                     <FormControlLabel
                       sx={{ pl: 0 }}
                       control={
-                        <CheckBox checked={checked} onChange={handleChange} />
+                        <Checkbox checked={checked} onChange={handleChange} />
                       }
                       label="Draft"
                     />
