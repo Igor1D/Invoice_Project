@@ -85,6 +85,25 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
                       label="Draft"
                     />
                   </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <FormControlLabel
+                      sx={{ pl: 0 }}
+                      control={
+                        <Checkbox checked={checked} onChange={handleChange} />
+                      }
+                      label="Pending"
+                    />
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    <FormControlLabel
+                      sx={{ pl: 0 }}
+                      control={
+                        <Checkbox checked={checked} onChange={handleChange} />
+                      }
+                      label="Paid"
+                    />
+                  </MenuItem>
+
                   {/*<MenuItem onClick={handleClose}>My account</MenuItem>*/}
                   {/*<MenuItem onClick={handleClose}>Logout</MenuItem>*/}
                 </Menu>
