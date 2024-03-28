@@ -12,10 +12,11 @@ import Checkbox from "@mui/material/Checkbox";
 // import { Checkbox } from "@mui/icons-material";
 import FormControlLabel from "@mui/material/FormControlLabel";
 
-function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
-  const { createInvoice } = UseInvoicesContext();
+function Home({ isSidePanelOpen, setSidePanelOpen }) {
+  const { createInvoice, invoices } = UseInvoicesContext();
   const totalInvoices = invoices ? Object.keys(invoices).length : "...";
 
+  // Filter's modal win
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -26,25 +27,38 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
   };
 
   // Checkbox
-  // const [checked, setChecked] = useState(false);
-  // console.log(checked);
-  // const handleChange = (event) => setChecked(event.target.checked);
-
-  const [filterState, setFilterState] = useState({
+  const [checkboxState, setCheckboxState] = useState({
     draft: false,
     paid: false,
     pending: false,
   });
 
   const handleChange = (event) =>
-    setFilterState({
-      ...filterState,
+    setCheckboxState({
+      ...checkboxState,
       [event.target.name]: event.target.checked,
     });
 
-  const { draft, paid, pending } = filterState;
+  const { draft, paid, pending } = checkboxState;
 
-  console.log(typeof filterState);
+  let homeInvoices;
+
+  if (
+    !checkboxState === checkboxState.draft &&
+    !checkboxState.paid &&
+    !checkboxState.pending
+  ) {
+    homeInvoices = invoices;
+  } else {
+    homeInvoices = invoices
+      ? invoices.filter(
+          (invoice, index) => invoice.status === Object.keys(checkboxState)[0],
+        )
+      : null;
+  }
+  // console.log(homeInvoices);
+  console.log(Object.keys(checkboxState));
+  // console.log(!checkboxState === !checkboxState.draft);
 
   return (
     <>
@@ -131,9 +145,6 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
                       label="Paid"
                     />
                   </MenuItem>
-
-                  {/*<MenuItem onClick={handleClose}>My account</MenuItem>*/}
-                  {/*<MenuItem onClick={handleClose}>Logout</MenuItem>*/}
                 </Menu>
               </div>
               <Button
@@ -153,7 +164,7 @@ function Home({ invoices, isSidePanelOpen, setSidePanelOpen }) {
             </div>
           </div>
           {/*AllInvoice comp goes here*/}
-          <AllInvoices invoices={invoices} />
+          <AllInvoices invoices={invoices} homeInvoices={homeInvoices} />
         </div>
       </div>
     </>
