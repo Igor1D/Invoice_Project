@@ -9,12 +9,19 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import Checkbox from "@mui/material/Checkbox";
-// import { Checkbox } from "@mui/icons-material";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Pagination from "@mui/material/Pagination";
+import Stack from "@mui/material/Stack";
 
 function Home({ isSidePanelOpen, setSidePanelOpen }) {
   const { createInvoice, invoices } = UseInvoicesContext();
   const totalInvoices = invoices ? Object.keys(invoices).length : "...";
+
+  // Pagination
+  const [page, setPage] = useState(1);
+  const handlePagiChange = (event, value) => {
+    setPage(value);
+  };
 
   // Filter's modal win
   const [anchorEl, setAnchorEl] = useState(null);
@@ -161,6 +168,19 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
           </div>
           {/*AllInvoice comp goes here*/}
           <AllInvoices invoices={invoices} homeInvoices={homeInvoices} />
+
+          <div className="paginationBar">
+            <Stack spacing={2}>
+              <Pagination
+                count={5}
+                page={page}
+                color="primary"
+                size="large"
+                className="custom-pagination"
+                onChange={handlePagiChange}
+              />
+            </Stack>
+          </div>
         </div>
       </div>
     </>

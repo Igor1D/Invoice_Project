@@ -8,14 +8,11 @@
 /*    --primary-box-shadow: 0px 8px 18px 0px rgba(45, 45, 60, 0.56);*/
 /*}*/
 
-body {
+body, #root {
   margin: 0;
   padding: 0;
   background-color: #141625;
-}
-#root {
-  margin: 0;
-  padding: 0;
+  font-family: "League Spartan", sans-serif;
 }
 
 
@@ -170,6 +167,16 @@ p {
   align-items: center;
 }
 
+/*Pagination*/
+.paginationBar {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.custom-pagination .MuiPaginationItem-root {
+  color: white !important;
+}
 
 
 @media screen and (max-width: 2300px) {
@@ -186,4 +193,97 @@ p {
     padding-right: 250px;
   }
 
+}
+
+/* Improved sidebar for mobile */
+@media screen and (max-width: 768px) {
+  .side-bar {
+    position: fixed; /* Makes the sidebar stay at the top */
+    top: 0;
+    left: 0;
+    width: 100%; /* Span across the entire screen width */
+    height: 60px; /* Adjust the height automatically */
+    flex-direction: row; /* Align items horizontally */
+    justify-content: space-between; /* Distribute space between items */
+
+    z-index: 1000; /* Ensure it's above other content */
+    border-radius: 0; /* Remove border radius */
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebar-top, .sidebar-bottom {
+    flex-direction: row;
+    justify-content: center; /* Adjust this as needed */
+
+
+
+  }
+
+  .logo {
+    font-size: 20px;
+
+  }
+  .sidebar-top {
+    height: 30px;
+    width: 30px;
+    margin: 0;
+    padding: 0;
+
+  }
+
+  .layout {
+    margin-top: 60px; /* Adjust based on the final height of your top bar to prevent content from being hidden behind it */
+  }
+
+  /* Adjust the logo and avatar sizes if needed */
+  .logo, .image-avatar {
+    width: 40px; /* Smaller logo and avatar size for mobile */
+  }
+
+  .header, .header-left, .header-right {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-right {
+    gap: 10px;
+  }
+}
+
+/* Adjust layout padding for different screen sizes */
+@media screen and (max-width: 1800px) {
+  .layout {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .layout {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+/* Additional mobile-specific adjustments as needed */
+@media screen and (max-width: 414px) {
+  .sidebar-top, .sidebar-bottom {
+    padding: 15px; /* Less padding for compact look */
+  }
+
+  .logo, .image-avatar {
+    width: 40px; /* Smaller logo and avatar */
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .header-filter-div, .header-right {
+    flex-direction: column;
+    align-items: center;
+  }
 }
