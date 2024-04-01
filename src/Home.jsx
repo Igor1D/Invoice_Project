@@ -43,22 +43,18 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
 
   let homeInvoices;
 
-  if (
-    !checkboxState === checkboxState.draft &&
-    !checkboxState.paid &&
-    !checkboxState.pending
-  ) {
-    homeInvoices = invoices;
+  if (!checkboxState.draft && !checkboxState.paid && !checkboxState.pending) {
+    homeInvoices = invoices ? invoices : [];
   } else {
     homeInvoices = invoices
-      ? invoices.filter(
-          (invoice, index) => invoice.status === Object.keys(checkboxState)[0],
-        )
-      : null;
+      ? invoices.filter((invoice, index) => {
+          return checkboxState[invoice.status];
+        })
+      : [];
   }
   // console.log(homeInvoices);
   console.log(Object.keys(checkboxState));
-  // console.log(!checkboxState === !checkboxState.draft);
+  // console.log(!checkboxState === !draft);
 
   return (
     <>
