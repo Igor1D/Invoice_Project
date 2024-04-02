@@ -11,14 +11,14 @@ import CircleIcon from "@mui/icons-material/Circle.js";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import moment from "moment";
 
-function AllInvoices({ homeInvoices }) {
+function AllInvoices({ homeInvoices, invoicesToShow }) {
   const { invoices, setInvoices } = UseInvoicesContext();
 
   return (
     <>
       <div className="invoices-container">
         {invoices ? (
-          homeInvoices.map((invoice, index) => {
+          invoicesToShow.map((invoice, index) => {
             return (
               <div className="invoice-div" key={invoice.id}>
                 <div className="invoice-leftSide-div">

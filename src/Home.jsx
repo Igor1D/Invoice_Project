@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AllInvoices from "./AllInvoices.jsx";
 import "./home.css";
 import Button from "@mui/material/Button";
@@ -15,13 +15,7 @@ import Stack from "@mui/material/Stack";
 
 function Home({ isSidePanelOpen, setSidePanelOpen }) {
   const { createInvoice, invoices } = UseInvoicesContext();
-  const totalInvoices = invoices ? Object.keys(invoices).length : "...";
-
-  // Pagination
-  const [page, setPage] = useState(1);
-  const handlePagiChange = (event, value) => {
-    setPage(value);
-  };
+  const invoicesQty = invoices ? Object.keys(invoices).length : "...";
 
   // Filter's modal win
   const [anchorEl, setAnchorEl] = useState(null);
@@ -63,6 +57,26 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
   console.log(Object.keys(checkboxState));
   // console.log(!checkboxState === !draft);
 
+  // Pagination
+  const [page, setPage] = useState(1);
+  const [pageQty, setPageQty] = useState(0);
+  const handlePagiChange = (event, pageNum) => {
+    setPage(pageNum);
+  };
+
+  const pageSize = 7; // Invoices per page
+
+  useEffect(() => {
+    const totalInvoices = homeInvoices.length;
+    // console.log(totalInvoices);
+    const pageCount = Math.ceil(totalInvoices / pageSize);
+    setPageQty(pageCount);
+  }, [homeInvoices]);
+
+  const start = (page - 1) * pageSize;
+  const end = start + pageSize;
+  const invoicesToShow = homeInvoices.slice(start, end); // I was struggling with that part
+
   return (
     <>
       <div className="app-component">
@@ -87,7 +101,7 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
             <div className="header-left">
               <h2 className="header-invoices-h2">Invoices</h2>
               <p className="header-invoices-amount">
-                There are total {totalInvoices} invoices
+                There are total {invoicesQty} invoices
               </p>
             </div>
             <div className="header-right">
@@ -167,12 +181,16 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
             </div>
           </div>
           {/*AllInvoice comp goes here*/}
-          <AllInvoices invoices={invoices} homeInvoices={homeInvoices} />
+          <AllInvoices
+            invoices={invoices}
+            homeInvoices={homeInvoices}
+            invoicesToShow={invoicesToShow}
+          />
 
           <div className="paginationBar">
             <Stack spacing={2}>
               <Pagination
-                count={5}
+                count={pageQty}
                 page={page}
                 color="primary"
                 size="large"
