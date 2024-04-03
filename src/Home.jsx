@@ -77,6 +77,49 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
   const end = start + pageSize;
   const invoicesToShow = homeInvoices.slice(start, end); // I was struggling with that part
 
+  // Buttons
+
+  const [createInvoiceBtnText, setCreateInvoiceBtnText] =
+    useState("New Invoice");
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 414) {
+        setCreateInvoiceBtnText("New");
+      } else {
+        setCreateInvoiceBtnText("New Invoice");
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const [filterBtnText, setFilterBtnText] = useState("Filter by status");
+
+  useEffect(() => {
+    const handleFilterBtnTextResize = () => {
+      if (window.innerWidth <= 400) {
+        setFilterBtnText("Filter");
+      } else {
+        setFilterBtnText("Filter by status");
+      }
+    };
+
+    handleFilterBtnTextResize();
+
+    window.addEventListener("resize", handleFilterBtnTextResize);
+
+    return () => {
+      window.removeEventListener("resize", handleFilterBtnTextResize);
+    };
+  }, []);
+
   return (
     <>
       <div className="app-component">
@@ -106,7 +149,7 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
             </div>
             <div className="header-right">
               <div className="header-filter-div">
-                <p className="filterP">Filter by status</p>
+                <p className="filterP">{filterBtnText}</p>
                 <IconButton
                   color="primary"
                   aria-label="info"
@@ -165,6 +208,7 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
                 </Menu>
               </div>
               <Button
+                className="createInvoiceBtn"
                 variant="contained"
                 onClick={() => setSidePanelOpen(!isSidePanelOpen)}
                 sx={{
@@ -176,7 +220,7 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
                 }}
                 startIcon={<AddCircleOutlineIcon />}
               >
-                New Invoice
+                {createInvoiceBtnText}
               </Button>
             </div>
           </div>

@@ -268,22 +268,85 @@ p {
 
 /* Additional mobile-specific adjustments as needed */
 @media screen and (max-width: 414px) {
+
+  .layout{
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .header-invoices-h2 {
+    font-size: 27px;
+  }
+
   .sidebar-top, .sidebar-bottom {
     padding: 15px; /* Less padding for compact look */
   }
 
-  .logo, .image-avatar {
-    width: 40px; /* Smaller logo and avatar */
+  .image-avatar {
+    width:30px; /* Smaller logo and avatar */
+    height: 30px
+
+  }
+
+  .logo {
+    width: 25px; /* Smaller logo and avatar */
+    height: 25px
+  }
+
+  .sidebar-avatar {
+    margin: 0;
   }
 
   .header {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
+    margin-bottom: 0;
   }
 
   .header-filter-div, .header-right {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
   }
+
+  .header-left{
+    justify-content: left;
+    flex-direction: column;
+    text-align: left;
+
+  }
+
+  .header-invoices-amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    font-size: 12px !important;
+
+  }
+
+  .filterP {
+    font-size: 16px;
+  }
+
+  .createInvoiceBtn{
+    padding: 10px 14px !important;
+    font-size: 14px !important;
+  }
+
+  .invoice-div {
+    flex-direction: row;
+  }
+
+  .invoice-leftSide-div {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .invoice-rightSide-div {
+    flex-direction: column-reverse;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+
 }

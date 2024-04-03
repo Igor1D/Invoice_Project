@@ -82,10 +82,18 @@ function AllInvoices({ homeInvoices, invoicesToShow }) {
                   <Link
                     to={`/invoice/${invoice.id}`}
                     key={index}
-                    style={{ textDecoration: "none" }}
+                    style={{
+                      textDecoration: "none",
+                      display: { xs: "none", sm: "block" },
+                    }}
                   >
                     <IconButton color="primary" aria-label="info">
-                      <ArrowForwardIosIcon sx={{ fontSize: 14 }} />
+                      <ArrowForwardIosIcon
+                        sx={{
+                          fontSize: 14,
+                          display: { xs: "none", sm: "none", md: "block" },
+                        }}
+                      />
                     </IconButton>
                   </Link>
                 </div>
