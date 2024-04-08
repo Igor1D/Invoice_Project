@@ -39,7 +39,16 @@
 
 .invoice-info {
     margin: 0;
+    /*font-weight: bold;*/
 
+}
+
+.invoice-id {
+    font-weight: bold;
+}
+
+.invoice-total {
+    font-weight: bold;
 }
 
 .invoice-status {
@@ -54,6 +63,8 @@ p {
     .invoice-div{
         flex-direction: column;
     }
+
+
 
 
 }

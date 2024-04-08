@@ -163,6 +163,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                 <Button
                   onClick={markAsPaid}
                   variant="contained"
+                  className="markAsPaidBtn"
                   sx={{
                     borderRadius: "40px",
                     padding: "15px 15px 15px 15px",

@@ -238,3 +238,32 @@
     }
 
 }
+
+@media screen and (max-width: 414px) {
+    .invoice-info-layout {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    .invoice-info-header {
+        flex-direction: column;
+        height: 15vh;
+        padding: 20px;
+    }
+
+    .markAsPaidBtn {
+        padding: 12px !important;
+        font-size: 14px !important;
+        display: flex !important;
+        /*align-items: center !important;*/
+        /*flex-direction: row;*/
+
+    }
+
+    .invoice-info-header-right {
+        gap: 4px    ;
+        justify-content: space-between;
+    }
+
+
+}

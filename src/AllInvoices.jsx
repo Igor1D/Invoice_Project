@@ -20,84 +20,85 @@ function AllInvoices({ homeInvoices, invoicesToShow }) {
         {invoices ? (
           invoicesToShow.map((invoice, index) => {
             return (
-              <div className="invoice-div" key={invoice.id}>
-                <div className="invoice-leftSide-div">
-                  <p className="invoice-info">#{invoice.id.toUpperCase()}</p>
-                  <p className="invoice-info">
-                    Due{" "}
-                    {moment(invoice.paymentDue, "YYYY-MM-DD").format(
-                      "Do MMM YYYY",
-                    )}
-                  </p>
-                  <p className="invoice-info">{invoice.clientName}</p>
+              <Link
+                to={`/invoice/${invoice.id}`}
+                key={index}
+                style={{
+                  textDecoration: "none",
+                  display: { xs: "none", sm: "block" },
+                }}
+              >
+                <div className="invoice-div" key={invoice.id}>
+                  <div className="invoice-leftSide-div">
+                    <p className="invoice-id">#{invoice.id.toUpperCase()}</p>
+                    <p className="invoice-info">
+                      Due{" "}
+                      {moment(invoice.paymentDue, "YYYY-MM-DD").format(
+                        "Do MMM YYYY",
+                      )}
+                    </p>
+                    <p className="invoice-info">{invoice.clientName}</p>
+                  </div>
+                  <div className="invoice-rightSide-div">
+                    <p className="invoice-total">$ {invoice.total}</p>
+                    <Chip
+                      label={
+                        invoice.status.charAt(0).toUpperCase() +
+                        invoice.status.slice(1)
+                      }
+                      style={{
+                        backgroundColor:
+                          invoice.status === "pending"
+                            ? "#2A2736"
+                            : invoice.status === "paid"
+                              ? "#1E2C3E"
+                              : invoice.status === "draft"
+                                ? "#292C44"
+                                : "",
+                        color:
+                          invoice.status === "pending"
+                            ? "#FF8F00"
+                            : invoice.status === "paid"
+                              ? "#33D69F"
+                              : invoice.status === "draft"
+                                ? "#E0E4FA"
+                                : "",
+                        padding: "15px",
+                        paddingTop: "25px",
+                        paddingBottom: "25px",
+                        fontSize: "18px",
+                        fontWeight: 550,
+                        borderRadius: "9px",
+                        width: "130px",
+                      }}
+                      icon={
+                        <CircleIcon
+                          style={{
+                            fontSize: "small",
+                            color:
+                              invoice.status === "pending"
+                                ? "#FF8F00"
+                                : invoice.status === "paid"
+                                  ? "#33D69F"
+                                  : invoice.status === "draft"
+                                    ? "#E0E4FA"
+                                    : "",
+                          }}
+                        />
+                      }
+                    />
+
+                    {/*<IconButton color="primary" aria-label="info">*/}
+                    {/*  <ArrowForwardIosIcon*/}
+                    {/*    sx={{*/}
+                    {/*      fontSize: 14,*/}
+                    {/*      display: { xs: "none", sm: "none", md: "block" },*/}
+                    {/*    }}*/}
+                    {/*  />*/}
+                    {/*</IconButton>*/}
+                  </div>
                 </div>
-                <div className="invoice-rightSide-div">
-                  <p className="invoice-info">$ {invoice.total}</p>
-                  <Chip
-                    label={
-                      invoice.status.charAt(0).toUpperCase() +
-                      invoice.status.slice(1)
-                    }
-                    style={{
-                      backgroundColor:
-                        invoice.status === "pending"
-                          ? "#2A2736"
-                          : invoice.status === "paid"
-                            ? "#1E2C3E"
-                            : invoice.status === "draft"
-                              ? "#292C44"
-                              : "",
-                      color:
-                        invoice.status === "pending"
-                          ? "#FF8F00"
-                          : invoice.status === "paid"
-                            ? "#33D69F"
-                            : invoice.status === "draft"
-                              ? "#E0E4FA"
-                              : "",
-                      padding: "15px",
-                      paddingTop: "25px",
-                      paddingBottom: "25px",
-                      fontSize: "18px",
-                      fontWeight: 550,
-                      borderRadius: "9px",
-                      width: "130px",
-                    }}
-                    icon={
-                      <CircleIcon
-                        style={{
-                          fontSize: "small",
-                          color:
-                            invoice.status === "pending"
-                              ? "#FF8F00"
-                              : invoice.status === "paid"
-                                ? "#33D69F"
-                                : invoice.status === "draft"
-                                  ? "#E0E4FA"
-                                  : "",
-                        }}
-                      />
-                    }
-                  />
-                  <Link
-                    to={`/invoice/${invoice.id}`}
-                    key={index}
-                    style={{
-                      textDecoration: "none",
-                      display: { xs: "none", sm: "block" },
-                    }}
-                  >
-                    <IconButton color="primary" aria-label="info">
-                      <ArrowForwardIosIcon
-                        sx={{
-                          fontSize: 14,
-                          display: { xs: "none", sm: "none", md: "block" },
-                        }}
-                      />
-                    </IconButton>
-                  </Link>
-                </div>
-              </div>
+              </Link>
             );
           })
         ) : (

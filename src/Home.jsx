@@ -104,7 +104,7 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
 
   useEffect(() => {
     const handleFilterBtnTextResize = () => {
-      if (window.innerWidth <= 400) {
+      if (window.innerWidth <= 414) {
         setFilterBtnText("Filter");
       } else {
         setFilterBtnText("Filter by status");
