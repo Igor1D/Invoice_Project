@@ -241,28 +241,85 @@
 
 @media screen and (max-width: 414px) {
     .invoice-info-layout {
-        padding-left: 50px;
-        padding-right: 50px;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .invoice-info-main {
+        margin-bottom: 25px;
+        gap: 35px;
     }
 
     .invoice-info-header {
         flex-direction: column;
         height: 15vh;
         padding: 20px;
+        align-items: flex-end;
     }
 
-    .markAsPaidBtn {
-        padding: 12px !important;
+    .primaryBtns {
+        padding: 10px !important;
         font-size: 14px !important;
         display: flex !important;
         /*align-items: center !important;*/
         /*flex-direction: row;*/
+    }
+
+
+
+
+    .invoice-info-header-right {
+        justify-content: space-between;
+        order: 2; /* Ensure it moves to the end */
+        display: flex;
+        width: 100%;
+    }
+
+    .invoice-info-btns {
+        margin: 0;
+        padding: 0;
+        align-items: flex-start;
+    }
+
+    .invoice-info-header-left {
+        order: 1; /* Ensure this comes above the right header in mobile view */
+        width: 100%; /* Adjust if necessary */
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .invoice-info-main-top {
+        flex-direction: column;
+        padding: 25px;
+        gap: 30px;
+        height: 100%;
+    }
+
+    .invoice-info-main-mid {
+        padding: 0 25px  25px;
+        gap: 25px;
+        flex-direction: row;
+        height: 20vh;
+        flex-wrap: wrap;
+        margin-bottom: 25px;
+    }
+
+    .invoice-info-main-top-right {
+        gap: 5px;
+        height: 100%;
+        display: flex;
 
     }
 
-    .invoice-info-header-right {
-        gap: 4px    ;
-        justify-content: space-between;
+    .invoice-info-main-mid-left {
+        /*order: 1;*/
+        gap: 15px;
+        margin-right: 40px;
+    }
+
+
+    .invoice-info-main-bottom {
+        padding: 25px;
     }
 
 

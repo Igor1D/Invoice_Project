@@ -133,10 +133,10 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                 </div>
               </div>
               <div className="invoice-info-header-right">
-                <div className="invoice-info-btns"></div>
                 <Button
                   onClick={() => setSidePanelOpen(!isSidePanelOpen)}
                   variant="contained"
+                  className="primaryBtns"
                   sx={{
                     borderRadius: "40px",
                     padding: "15px 20px 15px 20px",
@@ -150,6 +150,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                 <Button
                   variant="contained"
                   onClick={handleDeleteInvoice}
+                  className="primaryBtns"
                   sx={{
                     borderRadius: "40px",
                     padding: "15px 15px 15px 15px",
@@ -163,7 +164,7 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
                 <Button
                   onClick={markAsPaid}
                   variant="contained"
-                  className="markAsPaidBtn"
+                  className="primaryBtns"
                   sx={{
                     borderRadius: "40px",
                     padding: "15px 15px 15px 15px",
