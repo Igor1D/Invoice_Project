@@ -108,6 +108,63 @@
     
 }
 
-/*.MuiInputLabel-root {*/
-/*    color: black !important;*/
-/*}*/
+@media screen and (max-width: 414px) {
+    .form {
+        padding: 20px
+    }
+
+    .billTo-city-post-country {
+        gap: 13px;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .billTo-city {
+        width: 48%;
+    }
+
+.billTo-postCode {
+    width: 48%
+}
+
+.billTo-country {
+    width: 100%;
+}
+
+.items-div {
+    flex-wrap: wrap;
+}
+
+.item-input {
+    width: 100%;
+}
+
+.item-qty {
+    width: 15%;
+}
+
+.item-price {
+    width: 30%;
+}
+
+.draft-save-buttons {
+    gap: 25px;
+}
+
+.secondaryBtns {
+    padding: 10px !important;
+    font-size: 14px !important;
+}
+
+.invoice-head {
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.btn-close-mobile {
+    padding: 0 !important;
+    /*display: flex !important;*/
+}
+
+}

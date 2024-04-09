@@ -75,7 +75,20 @@ function Home({ isSidePanelOpen, setSidePanelOpen }) {
 
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
-  const invoicesToShow = homeInvoices.slice(start, end); // I was struggling with that part
+  let invoicesToShow = homeInvoices.slice(start, end); // I was struggling with that part
+
+  // Mobile Pagination
+
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  invoicesToShow = isMobile ? homeInvoices : homeInvoices.slice(start, end);
 
   // Buttons
 

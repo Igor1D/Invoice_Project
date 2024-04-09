@@ -351,5 +351,13 @@ p {
 
   }
 
+  .paginationBar{
+    display: none;
+  }
+
+  .layout {
+    padding-bottom: 25px;
+  }
+
 
 }

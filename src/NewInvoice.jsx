@@ -13,12 +13,13 @@ import FormControl from "@mui/material/FormControl";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import moment from "moment";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import "moment/locale/en-gb";
 import { LocalizationProvider } from "@mui/x-date-pickers";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew.js";
 
 const CustomTextField = styled(TextField)({
   backgroundColor: "#252945",
@@ -50,7 +51,7 @@ const CustomSelect = styled(Select)({
   },
 });
 
-function NewInvoice() {
+function NewInvoice({ setSidePanelOpen }) {
   const { invoices, createInvoice, deleteInvoice, updateInvoice } =
     UseInvoicesContext();
 
@@ -319,12 +320,39 @@ function NewInvoice() {
     setForm({ ...form, items: newItemsData });
   }
 
+  const handleCloseSidePanelMobile = () => {
+    setSidePanelOpen(false);
+  };
+
   // console.log(invoices)
   return (
     <>
       <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="en-gb">
         <form className="form" onSubmit={handleSubmit}>
           <div className="invoice-head">
+            <div className="invoice-info-goBack-btn">
+              <Button
+                onClick={handleCloseSidePanelMobile}
+                variant="text"
+                className="btn-close-mobile"
+                sx={{
+                  color: "white",
+                  textTransform: "none",
+                  fontSize: 16,
+                  display: { xs: "flex", sm: "none", md: "none", lg: "none" },
+                }}
+                startIcon={
+                  <ArrowBackIosNewIcon
+                    sx={{
+                      color: "#7C5DFA",
+                      fontSize: 14,
+                    }}
+                  />
+                }
+              >
+                Go back
+              </Button>
+            </div>
             {filteredInvoice ? (
               <p className="newInvoice-editInvoice-p">
                 Edit #{filteredInvoice.id}
@@ -406,6 +434,7 @@ function NewInvoice() {
             />
             <div className="billTo-city-post-country">
               <CustomTextField
+                className="billTo-city"
                 value={form.clientAddress.city}
                 onChange={handleClientChange}
                 name="city"
@@ -417,6 +446,7 @@ function NewInvoice() {
               <CustomTextField
                 value={form.clientAddress.postCode}
                 onChange={handleClientChange}
+                className="billTo-postCode"
                 name="postCode"
                 label="Post Code"
                 InputLabelProps={{
@@ -426,6 +456,7 @@ function NewInvoice() {
               <CustomTextField
                 value={form.clientAddress.country}
                 onChange={handleClientChange}
+                className="billTo-country"
                 name="country"
                 label="Country"
                 InputLabelProps={{
@@ -502,6 +533,7 @@ function NewInvoice() {
                     onChange={(e) => handleItemChange(e, index, "name")}
                     name={`name-${index}`}
                     label="Item Name"
+                    className="item-input"
                     InputLabelProps={{
                       shrink: true,
                     }}
@@ -511,6 +543,7 @@ function NewInvoice() {
                     value={item.quantity}
                     onChange={(e) => handleItemChange(e, index, "quantity")}
                     name={`quantity-${index}`}
+                    className="item-qty"
                     label="Qty"
                     min="1"
                     InputLabelProps={{
@@ -522,6 +555,7 @@ function NewInvoice() {
                     inputProps={{ type: "tel", min: 0 }}
                     onChange={(e) => handleItemChange(e, index, "price")}
                     name={`price-${index}`}
+                    className="item-price"
                     label="Item Price"
                     InputLabelProps={{
                       shrink: true,
@@ -543,6 +577,7 @@ function NewInvoice() {
             ))}
             <Button
               variant="contained"
+              className="secondaryBtns"
               sx={{ borderRadius: "18px", backgroundColor: "#252945" }}
               onClick={addNewItem}
             >
@@ -557,6 +592,7 @@ function NewInvoice() {
                 type="reset"
                 variant="contained"
                 onClick={handleDiscard}
+                className="secondaryBtns"
                 sx={{
                   borderRadius: "40px",
                   padding: "13px 20px 13px 20px",
@@ -573,6 +609,7 @@ function NewInvoice() {
                 // type="submit"
                 onClick={handleSaveAsDraft}
                 variant="contained"
+                className="secondaryBtns"
                 sx={{
                   borderRadius: "40px",
                   padding: "13px 20px 13px 20px",
@@ -588,6 +625,7 @@ function NewInvoice() {
                   type="button"
                   onClick={handleUpdate}
                   variant="contained"
+                  className="secondaryBtns"
                   sx={{
                     borderRadius: "40px",
                     padding: "13px 20px 13px 20px",
@@ -602,6 +640,7 @@ function NewInvoice() {
                 <Button
                   type="submit"
                   variant="contained"
+                  className="secondaryBtns"
                   sx={{
                     borderRadius: "40px",
                     padding: "13px 20px 13px 20px",

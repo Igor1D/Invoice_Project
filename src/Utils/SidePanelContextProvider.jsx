@@ -25,7 +25,10 @@ function SidePanelContextProvider({ children }) {
         open={isSidePanelOpen}
         onClose={() => setSidePanelOpen(false)}
       >
-        <NewInvoice createInvoice={createInvoice} />
+        <NewInvoice
+          createInvoice={createInvoice}
+          setSidePanelOpen={setSidePanelOpen}
+        />
       </Drawer>
       {children}
     </SidePanelContext.Provider>
