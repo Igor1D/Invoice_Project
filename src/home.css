@@ -258,7 +258,7 @@ p {
 /* Adjust layout padding for different screen sizes */
 
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1444px) {
   .layout {
     padding-left: 50px;
     padding-right: 50px;
@@ -266,7 +266,7 @@ p {
 }
 
 /* Additional mobile-specific adjustments as needed */
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 800px) {
 
   .layout{
     padding-left: 25px;

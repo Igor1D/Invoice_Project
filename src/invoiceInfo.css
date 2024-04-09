@@ -239,7 +239,7 @@
 
 }
 
-@media screen and (max-width: 414px) {
+@media screen and (max-width: 800px) {
     .invoice-info-layout {
         padding-left: 18px;
         padding-right: 18px;
