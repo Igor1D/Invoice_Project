@@ -46,13 +46,13 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
           <div className="side-bar">
             <div className="sidebar-top">
               <div className="sidebar-logo">
-                <img src="/src/assets/logo.svg" alt="logo" className="logo" />
+                <img src="/assets/logo.svg" alt="logo" className="logo" />
               </div>
             </div>
             <div className="sidebar-bottom">
               <div className="sidebar-avatar">
                 <img
-                  src="/src/assets/image-avatar.jpg"
+                  src="/assets/image-avatar.jpg"
                   alt="avatar-image"
                   className="image-avatar"
                 />
