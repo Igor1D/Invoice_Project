@@ -9,6 +9,7 @@ The user interface design for this Invoice Management Application was based on F
 ## Features
 
 - **View All Invoices**: A comprehensive list of all invoices with status indicators and essential details.
+- **Filter**: Invoices can be filtered by status.
 - **Create New Invoices**: Intuitive forms to add new invoices to the system.
 - **Invoice Details**: View detailed information for each invoice, including items, totals, taxes, and client information.
 - **Edit Invoices**: Modify existing invoices and immediately view the updates.
