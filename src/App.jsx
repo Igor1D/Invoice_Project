@@ -8,9 +8,7 @@ import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import { UseSidePanelContext } from "./Utils/SidePanelContextProvider.jsx";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import "moment/locale/de";
-import { LocalizationProvider } from "@mui/x-date-pickers";
 function App({ children }) {
   const { invoices, setInvoices } = UseInvoicesContext();
   const { isSidePanelOpen, setSidePanelOpen } = UseSidePanelContext();

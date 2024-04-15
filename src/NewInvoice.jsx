@@ -64,8 +64,6 @@ function NewInvoice({ setSidePanelOpen }) {
   const id = pathname.slice(9);
   // console.log(pathname.slice(9))
 
-  console.log(id);
-
   //
   const filteredInvoice = invoices
     ? invoices.filter((invoice) => invoice.id === id)[0]
@@ -145,12 +143,6 @@ function NewInvoice({ setSidePanelOpen }) {
       draft.clientAddress[e.target.name] = e.target.value;
     });
   }
-
-  // let yourDate = new Date();
-  // yourDate.toISOString().split('T')[0]
-  // console.log(yourDate.toISOString().split('T')[0])
-
-  // console.log(selectedDate.$d.toISOString());
 
   function handleUpdate() {
     updateInvoice(filteredInvoice.id, {

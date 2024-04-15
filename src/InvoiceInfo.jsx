@@ -19,8 +19,6 @@ function InvoiceInfo({ isSidePanelOpen, setSidePanelOpen }) {
   const navigate = useNavigate();
 
   const { id } = useParams();
-  // console.log(id);
-  // console.log(invoices);
 
   const filteredInvoice = invoices
     ? invoices.filter((invoice) => invoice.id === id)[0]

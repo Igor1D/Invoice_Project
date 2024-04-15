@@ -270,7 +270,7 @@
 
     .invoice-info-header-right {
         justify-content: space-between;
-        order: 2; /* Ensure it moves to the end */
+        order: 2;
         display: flex;
         width: 100%;
     }
@@ -282,8 +282,8 @@
     }
 
     .invoice-info-header-left {
-        order: 1; /* Ensure this comes above the right header in mobile view */
-        width: 100%; /* Adjust if necessary */
+        order: 1;
+        width: 100%;
         display: flex;
         justify-content: space-between;
     }

@@ -1,6 +1,6 @@
 
 .MuiDrawer-paperAnchorLeft {
-    background-color: #141625 !important; /* Example background color */
+    background-color: #141625 !important;
 }
 
 .itemCost {
@@ -164,7 +164,7 @@
 
 .btn-close-mobile {
     padding: 0 !important;
-    /*display: flex !important;*/
+
 }
 
 }

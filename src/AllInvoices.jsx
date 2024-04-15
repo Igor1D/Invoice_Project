@@ -2,13 +2,11 @@ import React from "react";
 import "./AllInvoices.css";
 import Box from "@mui/material/Box";
 import LinearProgress from "@mui/material/LinearProgress";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import IconButton from "@mui/material/IconButton";
 import { Link, useParams } from "react-router-dom";
 import { UseInvoicesContext } from "./Utils/InvoicesContextProvider.jsx";
 import Chip from "@mui/material/Chip";
 import CircleIcon from "@mui/icons-material/Circle.js";
-import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+
 import moment from "moment";
 
 function AllInvoices({ homeInvoices, invoicesToShow }) {
@@ -87,15 +85,6 @@ function AllInvoices({ homeInvoices, invoicesToShow }) {
                         />
                       }
                     />
-
-                    {/*<IconButton color="primary" aria-label="info">*/}
-                    {/*  <ArrowForwardIosIcon*/}
-                    {/*    sx={{*/}
-                    {/*      fontSize: 14,*/}
-                    {/*      display: { xs: "none", sm: "none", md: "block" },*/}
-                    {/*    }}*/}
-                    {/*  />*/}
-                    {/*</IconButton>*/}
                   </div>
                 </div>
               </Link>

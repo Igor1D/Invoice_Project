@@ -237,12 +237,12 @@ p {
   }
 
   .layout {
-    margin-top: 60px; /* Adjust based on the final height of your top bar to prevent content from being hidden behind it */
+    margin-top: 60px;
   }
 
-  /* Adjust the logo and avatar sizes if needed */
+
   .logo, .image-avatar {
-    width: 40px; /* Smaller logo and avatar size for mobile */
+    width: 40px;
   }
 
   .header, .header-left, .header-right {
@@ -255,7 +255,6 @@ p {
   }
 }
 
-/* Adjust layout padding for different screen sizes */
 
 
 @media screen and (max-width: 1444px) {
@@ -265,7 +264,7 @@ p {
   }
 }
 
-/* Additional mobile-specific adjustments as needed */
+
 @media screen and (max-width: 800px) {
 
   .layout{
@@ -278,17 +277,17 @@ p {
   }
 
   .sidebar-top, .sidebar-bottom {
-    padding: 15px; /* Less padding for compact look */
+    padding: 15px;
   }
 
   .image-avatar {
-    width:30px; /* Smaller logo and avatar */
+    width:30px;
     height: 30px
 
   }
 
   .logo {
-    width: 25px; /* Smaller logo and avatar */
+    width: 25px;
     height: 25px
   }
 
